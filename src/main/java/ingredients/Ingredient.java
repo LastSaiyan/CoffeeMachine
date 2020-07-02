@@ -1,11 +1,11 @@
 package ingredients;
 
-import enums.Ingredients;
+import enums.IngredientsEnum;
 
 public abstract class Ingredient {
     protected int requiredQuantity;
-    protected Ingredients name;
-    public Ingredient(int requiredQuantity, Ingredients name){
+    protected IngredientsEnum name;
+    public Ingredient(int requiredQuantity, IngredientsEnum name){
         this.requiredQuantity = requiredQuantity;
         this.name = name;
     }
@@ -18,7 +18,7 @@ public abstract class Ingredient {
         this.requiredQuantity = requiredQuantity;
     }
 
-    public Ingredients getName() {
+    public IngredientsEnum getName() {
         return name;
     }
 }

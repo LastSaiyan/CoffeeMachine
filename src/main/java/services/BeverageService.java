@@ -1,7 +1,7 @@
 package services;
 
 import beverages.Beverage;
-import enums.Ingredients;
+import enums.IngredientsEnum;
 import ingredients.Ingredient;
 import org.springframework.util.CollectionUtils;
 
@@ -12,33 +12,39 @@ import java.util.Map;
 public class BeverageService {
     private static final String unAvailableErrorMessage = "%s cannot be prepared because %s is not available";
     private static final String inSufficientErrorMessage = "%s cannot be prepared because %s is not sufficient";
+    private static final String preparedMessage = "%s is prepared";
 
+    Map<IngredientsEnum, Ingredient> ingredients;
 
-    Map<Ingredients, Ingredient> ingredients;
-
-    public BeverageService(Map<Ingredients, Ingredient> ingredients) {
+    public BeverageService(Map<IngredientsEnum, Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
+    /**
+     * For now this method only allows one thread at a time to modify the data
+     *
+     * @param beverage
+     * @return
+     */
     public synchronized List<String> prepareBeverage(Beverage beverage) {
-        List<String> errors = new ArrayList<>();
-        List<Ingredient> requiredBeverageIngredients = beverage.getIngredients();
-        for (Ingredient ingredient : requiredBeverageIngredients) {
+        List<String> messages = new ArrayList<>();
+        for (Ingredient ingredient : beverage.getIngredients()) {
             if (this.ingredients.get(ingredient.getName()) == null) {
-                errors.add(String.format(unAvailableErrorMessage, beverage.getName(), ingredient.getName()));
+                messages.add(String.format(unAvailableErrorMessage, beverage.getName(), ingredient.getName()));
             } else {
                 int availableQuantity = this.ingredients.get(ingredient.getName()).getRequiredQuantity();
                 if (ingredient.getRequiredQuantity() > availableQuantity) {
-                    errors.add(String.format(inSufficientErrorMessage, beverage.getName(), ingredient.getName()));
+                    messages.add(String.format(inSufficientErrorMessage, beverage.getName(), ingredient.getName()));
                 }
             }
         }
-        if(CollectionUtils.isEmpty(errors)){
-            for (Ingredient ingredient : requiredBeverageIngredients) {
+        if (CollectionUtils.isEmpty(messages)) {
+            for (Ingredient ingredient : beverage.getIngredients()) {
                 int availableQuantity = this.ingredients.get(ingredient.getName()).getRequiredQuantity();
                 this.ingredients.get(ingredient.getName()).updateRequiredQuantity(availableQuantity - ingredient.getRequiredQuantity());
             }
+            messages.add(String.format(preparedMessage, beverage.getName()));
         }
-        return errors;
+        return messages;
     }
 }

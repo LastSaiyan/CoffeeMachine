@@ -1,6 +1,6 @@
 package beverages;
 
-import enums.Beverages;
+import enums.BeveragesEnum;
 import ingredients.Ingredient;
 
 import java.util.ArrayList;
@@ -8,8 +8,8 @@ import java.util.List;
 
 public abstract class Beverage {
     private List<Ingredient> ingredients;
-    private Beverages name;
-    public Beverage(Beverages name) {
+    private BeveragesEnum name;
+    public Beverage(BeveragesEnum name) {
         this.ingredients = new ArrayList<>();
         this.name = name;
     }
@@ -23,7 +23,7 @@ public abstract class Beverage {
         return this.ingredients;
     }
 
-    public Beverages getName(){
+    public BeveragesEnum getName(){
         return name;
     }
 

@@ -1,10 +1,9 @@
 package ingredients;
 
-import beverages.Beverage;
-import enums.Ingredients;
+import enums.IngredientsEnum;
 
 public class HotWater extends Ingredient{
     public HotWater(int quantity){
-        super(quantity, Ingredients.hot_water);
+        super(quantity, IngredientsEnum.hot_water);
     }
 }

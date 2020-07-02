@@ -1,9 +1,9 @@
 package ingredients;
 
-import enums.Ingredients;
+import enums.IngredientsEnum;
 
 public class GreenMixture extends Ingredient{
     public GreenMixture(int requiredQuantity){
-        super(requiredQuantity, Ingredients.green_mixture);
+        super(requiredQuantity, IngredientsEnum.green_mixture);
     }
 }

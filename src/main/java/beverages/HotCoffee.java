@@ -1,11 +1,11 @@
 package beverages;
 
-import enums.Beverages;
+import enums.BeveragesEnum;
 
 public class HotCoffee extends Beverage{
 
     public HotCoffee(){
-        super(Beverages.hot_coffee);
+        super(BeveragesEnum.hot_coffee);
     }
 
 }
