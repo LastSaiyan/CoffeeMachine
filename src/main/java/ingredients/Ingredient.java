@@ -14,6 +14,10 @@ public abstract class Ingredient {
         return this.requiredQuantity;
     }
 
+    /**
+     * This will help to set or update the quantity
+     * @param requiredQuantity quantity to update or set
+     */
     public void updateRequiredQuantity(int requiredQuantity){
         this.requiredQuantity = requiredQuantity;
     }

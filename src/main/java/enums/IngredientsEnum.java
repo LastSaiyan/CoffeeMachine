@@ -1,8 +1,11 @@
 package enums;
 
-import beverages.Beverage;
 import ingredients.*;
 
+/**
+ * This enum class helps us to give
+ *Ingredients object and will create the object with quantity if required
+ */
 public enum IngredientsEnum {
     hot_water {
         public Ingredient getIngredient(int requiredQuantity) {

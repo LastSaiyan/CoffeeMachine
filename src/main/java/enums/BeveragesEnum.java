@@ -2,6 +2,10 @@ package enums;
 
 import beverages.*;
 
+/**
+ * This enum class will help us to
+ * give us an beverage object based on the value if required
+ */
 public enum BeveragesEnum {
     hot_tea {
         public Beverage getBeverage() {

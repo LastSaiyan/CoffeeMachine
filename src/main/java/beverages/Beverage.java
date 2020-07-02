@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Beverage {
+    /**
+     * ingredients required to make a beverage
+     * we will keep adding the required ingredients for a beverage
+     */
     private List<Ingredient> ingredients;
     private BeveragesEnum name;
     public Beverage(BeveragesEnum name) {
@@ -25,10 +29,6 @@ public abstract class Beverage {
 
     public BeveragesEnum getName(){
         return name;
-    }
-
-    public boolean isBeverageServiceable(){
-        return false;
     }
 
 }
